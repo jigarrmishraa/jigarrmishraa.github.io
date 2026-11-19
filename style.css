@@ -32,17 +32,14 @@ body {
   margin: 0 auto;
   padding: 2rem 1.5rem;
   min-height: 100vh;
-  /* Colorful Mesh + Subtle Tech Grid Taaki Glass Ke Aar-Paar Saaf Dikhe */
   background-color: #050816;
   background-image: 
     radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.35), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.35), transparent 45%),
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.35), transparent 45%);
   position: relative;
   overflow-x: hidden;
 }
+
 
 /* Sharp Moving Liquid Spheres (Bina Zyada Blur Ke) */
 body::before,
