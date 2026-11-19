@@ -8,136 +8,144 @@ html {
   scroll-behavior: smooth;
 }
 
-@keyframes floatLiquidOne {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(180px, 140px) scale(1.2); }
+@keyframes bgFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-@keyframes floatLiquidTwo {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-180px, -130px) scale(1.25); }
+@keyframes orbMove1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(220px, 180px); }
 }
 
-@keyframes glassPopIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+@keyframes orbMove2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-220px, -160px); }
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
   line-height: 1.7;
-  background-color: #030712;
   color: #ffffff;
   max-width: 920px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
+  min-height: 100vh;
+  /* Colorful Mesh + Subtle Tech Grid Taaki Glass Ke Aar-Paar Saaf Dikhe */
+  background-color: #050816;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.35), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.35), transparent 45%),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Bright Liquid Orbs Jo Transparent Glass Ke Aar-Paar Dikhenge */
+/* Sharp Moving Liquid Spheres (Bina Zyada Blur Ke) */
 body::before,
 body::after {
   content: "";
   position: fixed;
-  width: 320px;
-  height: 320px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  filter: blur(45px);
+  filter: blur(18px);
   z-index: -1;
   pointer-events: none;
 }
 
 body::before {
-  top: 15%;
-  left: 15%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.85), rgba(59, 130, 246, 0.4));
-  animation: floatLiquidOne 8s ease-in-out infinite;
+  top: 12%;
+  left: 18%;
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+  opacity: 0.75;
+  animation: orbMove1 9s ease-in-out infinite;
 }
 
 body::after {
-  bottom: 15%;
-  right: 15%;
-  background: radial-gradient(circle, rgba(192, 132, 252, 0.85), rgba(236, 72, 153, 0.4));
-  animation: floatLiquidTwo 10s ease-in-out infinite;
+  bottom: 12%;
+  right: 18%;
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  opacity: 0.7;
+  animation: orbMove2 11s ease-in-out infinite;
 }
 
-/* Ultra-Transparent Crystal Glass Navbar */
+/* 100% Crystal Clear Glass Navbar */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.6rem;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(6px) saturate(160%);
-  -webkit-backdrop-filter: blur(6px) saturate(160%);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  background: transparent;
+  backdrop-filter: blur(2px) brightness(1.15);
+  -webkit-backdrop-filter: blur(2px) brightness(1.15);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 6px rgba(255, 255, 255, 0.15);
   margin-bottom: 4rem;
-  animation: glassPopIn 0.7s ease-out;
 }
 
 nav strong {
   color: #ffffff;
   font-size: 1.15rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 nav a {
   margin-left: 1.5rem;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
   font-weight: 500;
-  transition: text-shadow 0.3s ease;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.2s;
 }
 
 nav a:hover {
-  text-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+  opacity: 0.75;
 }
 
 .hero {
   margin-bottom: 4.5rem;
-  animation: glassPopIn 0.85s ease-out;
 }
 
 .hero h1 {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #ffffff 40%, #7dd3fc 80%, #e879f9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .hero p {
   font-size: 1.15rem;
-  color: rgba(241, 245, 249, 0.88);
+  color: rgba(255, 255, 255, 0.92);
   max-width: 650px;
 }
 
-/* Transparent Glass Pill Button */
+/* Crystal Water-Drop Pill Button */
 .btn {
   position: relative;
   overflow: hidden;
   display: inline-block;
   margin-top: 1.6rem;
-  padding: 0.85rem 1.8rem;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(6px) saturate(160%);
-  -webkit-backdrop-filter: blur(6px) saturate(160%);
+  padding: 0.85rem 1.9rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(2px) brightness(1.2);
+  -webkit-backdrop-filter: blur(2px) brightness(1.2);
   color: #ffffff;
   font-weight: 600;
   text-decoration: none;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.6);
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    inset 0 2px 5px rgba(255, 255, 255, 0.85),
+    inset 0 -3px 6px rgba(56, 189, 248, 0.35);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .btn::before {
@@ -147,9 +155,9 @@ nav a:hover {
   left: -100%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
   transform: skewX(-25deg);
-  transition: left 0.6s ease;
+  transition: left 0.55s ease;
 }
 
 .btn:hover::before {
@@ -157,13 +165,11 @@ nav a:hover {
 }
 
 .btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.8);
+  transform: translateY(-3px) scale(1.04);
 }
 
 section {
   margin-bottom: 4rem;
-  animation: glassPopIn 1s ease-out;
 }
 
 h2 {
@@ -171,19 +177,21 @@ h2 {
   color: #ffffff;
   margin-bottom: 1.25rem;
   padding-left: 0.85rem;
-  border-left: 3px solid #7dd3fc;
+  border-left: 3px solid #38bdf8;
 }
 
-/* Transparent Glass About & Contact Panels */
+/* Crystal Clear Panels (About & Contact) */
 #about p,
 #contact p {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(6px) saturate(160%);
-  -webkit-backdrop-filter: blur(6px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.32);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.45);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01));
+  backdrop-filter: blur(2px) brightness(1.12);
+  -webkit-backdrop-filter: blur(2px) brightness(1.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    inset 0 2px 5px rgba(255, 255, 255, 0.65),
+    inset 0 -2px 8px rgba(255, 255, 255, 0.12);
   padding: 1.5rem;
-  border-radius: 22px;
+  border-radius: 24px;
   color: #ffffff;
 }
 
@@ -193,18 +201,20 @@ h2 {
   gap: 1.5rem;
 }
 
-/* Crystal Transparent Glass Project Cards */
+/* Crystal Clear Glass Cards (Zero Dark Shadow) */
 .card {
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(6px) saturate(160%);
-  -webkit-backdrop-filter: blur(6px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.55);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+  backdrop-filter: blur(2px) brightness(1.15);
+  -webkit-backdrop-filter: blur(2px) brightness(1.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    inset 0 2px 6px rgba(255, 255, 255, 0.75),
+    inset 0 -3px 8px rgba(56, 189, 248, 0.2);
   padding: 1.6rem;
-  border-radius: 24px;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s, box-shadow 0.3s;
+  border-radius: 26px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s;
 }
 
 .card::after {
@@ -214,9 +224,9 @@ h2 {
   left: -120%;
   width: 70%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   transform: skewX(-20deg);
-  transition: left 0.7s ease;
+  transition: left 0.65s ease;
   pointer-events: none;
 }
 
@@ -225,9 +235,8 @@ h2 {
 }
 
 .card:hover {
-  transform: translateY(-7px) scale(1.015);
-  border-color: rgba(255, 255, 255, 0.75);
-  box-shadow: 0 18px 40px rgba(56, 189, 248, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.75);
+  transform: translateY(-7px) scale(1.02);
+  border-color: #ffffff;
 }
 
 .card h3 {
@@ -237,7 +246,7 @@ h2 {
 }
 
 .card p {
-  color: rgba(241, 245, 249, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   font-size: 0.95rem;
   margin-bottom: 1.2rem;
 }
@@ -245,9 +254,9 @@ h2 {
 .card span {
   display: inline-block;
   font-size: 0.82rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #7dd3fc;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
   padding: 0.3rem 0.85rem;
   border-radius: 999px;
 }
@@ -255,7 +264,7 @@ h2 {
 #contact a {
   color: #7dd3fc;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 #contact a:hover {
@@ -263,9 +272,9 @@ h2 {
 }
 
 footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
   padding-top: 1.5rem;
   font-size: 0.9rem;
-  color: rgba(148, 163, 184, 0.85);
+  color: rgba(255, 255, 255, 0.75);
   text-align: center;
 }
