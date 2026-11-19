@@ -319,3 +319,57 @@ footer {
     0 0 26px rgba(125, 211, 252, 0.9),
     0 0 40px rgba(192, 132, 252, 0.5);
 }
+/* Same Shine Sweep, Hover Lift & Tap Glow on Navbar, About Me & Get In Touch */
+nav,
+#about p,
+#contact p {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav::after,
+#about p::after,
+#contact p::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.65s ease;
+  pointer-events: none;
+}
+
+nav:hover::after,
+#about p:hover::after,
+#contact p:hover::after,
+nav:active::after,
+#about p:active::after,
+#contact p:active::after {
+  left: 150%;
+}
+
+nav:hover,
+#about p:hover,
+#contact p:hover {
+  transform: translateY(-7px) scale(1.015);
+  border-color: #ffffff;
+  box-shadow: 
+    inset 0 2px 8px rgba(255, 255, 255, 0.9),
+    0 12px 32px rgba(56, 189, 248, 0.3);
+}
+
+/* Mobile / Laptop Trackpad Tap Effect */
+.card:active,
+nav:active,
+#about p:active,
+#contact p:active {
+  transform: translateY(-4px) scale(0.99) !important;
+  border-color: #ffffff !important;
+  box-shadow: 
+    inset 0 2px 10px rgba(255, 255, 255, 1),
+    0 0 28px rgba(125, 211, 252, 0.75) !important;
+}
