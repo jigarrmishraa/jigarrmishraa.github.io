@@ -4,70 +4,273 @@
   padding: 0;
 }
 
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
-  color: #222;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+html {
+  scroll-behavior: smooth;
 }
 
+@keyframes floatLiquidOne {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 40px) scale(1.15); }
+}
+
+@keyframes floatLiquidTwo {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-70px, -50px) scale(1.2); }
+}
+
+@keyframes glassPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  line-height: 1.7;
+  background-color: #060913;
+  color: #f8fafc;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Liquid Glass Glowing Background Orbs */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  filter: blur(95px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  top: -80px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.55), rgba(99, 102, 241, 0.25));
+  animation: floatLiquidOne 9s ease-in-out infinite;
+}
+
+body::after {
+  bottom: -100px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.5), rgba(236, 72, 153, 0.2));
+  animation: floatLiquidTwo 11s ease-in-out infinite;
+}
+
+/* iOS Liquid Glass Navbar */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 1.6rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.25);
   margin-bottom: 4rem;
+  animation: glassPopIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+nav strong {
+  color: #ffffff;
+  font-size: 1.15rem;
+  letter-spacing: 0.4px;
 }
 
 nav a {
-  margin-left: 1.25rem;
+  margin-left: 1.5rem;
   text-decoration: none;
-  color: #222;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+nav a:hover {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
 }
 
 .hero {
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
+  animation: glassPopIn 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #ffffff 30%, #7dd3fc 70%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+.hero p {
+  font-size: 1.15rem;
+  color: rgba(226, 232, 240, 0.8);
+  max-width: 650px;
+}
+
+/* Liquid Glass Pill Button with Light Sweep */
 .btn {
+  position: relative;
+  overflow: hidden;
   display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
-  background: #111;
-  color: #fff;
+  margin-top: 1.6rem;
+  padding: 0.85rem 1.8rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  color: #ffffff;
+  font-weight: 600;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s, box-shadow 0.3s;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+  left: 140%;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 section {
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
+  animation: glassPopIn 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 h2 {
-  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  padding-left: 0.85rem;
+  border-left: 3px solid #7dd3fc;
+}
+
+/* About & Contact Glass Panels */
+#about p,
+#contact p {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  border-radius: 22px;
+  color: rgba(241, 245, 249, 0.9);
 }
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1.5rem;
 }
 
+/* iOS Liquid Glass Project Cards */
 .card {
-  border: 1px solid #ddd;
-  padding: 1.25rem;
-  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.28);
+  padding: 1.6rem;
+  border-radius: 24px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s, box-shadow 0.3s;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  left: 150%;
+}
+
+.card:hover {
+  transform: translateY(-7px) scale(1.015);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 18px 40px rgba(56, 189, 248, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.card h3 {
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+}
+
+.card p {
+  color: rgba(226, 232, 240, 0.8);
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.card span {
+  display: inline-block;
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #7dd3fc;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+}
+
+#contact a {
+  color: #7dd3fc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#contact a:hover {
+  text-decoration: underline;
 }
 
 footer {
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 1.5rem;
   font-size: 0.9rem;
-  color: #666;
+  color: rgba(148, 163, 184, 0.8);
+  text-align: center;
 }
+
